@@ -1,0 +1,16 @@
+# Enable the rewrite engine
+RewriteEngine On
+
+# Remove .php extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+
+# Redirect the root URL to index.php
+RewriteRule ^$ index.php [L]
+
+# Route requests to index.php
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ index.php?page=$1 [L]
+
+# Redirect to a 404 page when there is no page
+ErrorDocument 404 /php-structure/404.php
